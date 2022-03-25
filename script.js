@@ -7,17 +7,18 @@ function addRow(){
     //if table is empty, adds a row
     if(row_num == 0){
         let row = grid.insertRow();
-        let col= grid.insertCell();
+        let cell= row.insertCell();
         cell.onclick = function(){
             this.style.backgroundColor = '${selected_color}';
         };
     }
     else{
         col_num = grid.rows[0].children.length;
-        let row = grid.inserRow();
+        let row = grid.insertRow();
         for (let i =0; i<col_num; i++){
+            let cell = row.insertCell();
             cell.onclick= function(){
-                this.style.backgroundColor = '${colorSelected}';
+                this.style.backgroundColor = '${selected_color}';
             };
         }
     }
@@ -28,7 +29,6 @@ function deleteRow(){
     if(row_num != 0){
         grid.deleteRow(row_num-1);
     }
-
 }
 //adds a coluumn
 function addCol(){
@@ -43,6 +43,7 @@ function addCol(){
     else{
         let rows = grid.rows;
         for(let i=0;i<rows.length;i++){
+            let cell =rows[i].insertCell();
             cell.onclick=function(){
                 this.style.backgroundColor = '${selected_color}';
             };
@@ -66,30 +67,4 @@ function deleteCol(){
             }
         }
     }
-}
-function selected(){
-    selected_color = document.getElementById("selectedColorId").value;
-}
-//fill all
-function fillAll(){
-    let cells = document.querySelectorAll('td');
-    for(let i = 0;i<cells.length;i++){
-        cells[i].style.backgroundColor = '${selected_color}';
-    };
-}
-//clear all
-function clear(){
-    let cells = document.querySelectorAll('td');
-    for(let i =0; i <cells.length; i++){
-        cells.style.removeProperty('background-color');
-    };
-}
-//fill unfilled
-function fillUncolored(){
-    let cells = document.querySelectorAll('td');
-    for(let i = 0; i< cells.length;i++){
-        if(cells[i].style.backgroundColor == ""){
-            cells[i].style.backgroundColor= '${colorSelected}';
-        };
-    };
 }
