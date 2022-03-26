@@ -68,3 +68,31 @@ function deleteCol(){
         }
     }
 }
+function selected(){
+    selected_color = document.getElementById("selectedColorId").value;
+}
+//fill all
+function fillAll(){
+    let cells = document.querySelectorAll('td');
+    for(let i = 0;i<cells.length;i++){
+        cells[i].style.backgroundColor = selected_color;
+    };
+}
+//clear all cells color...or supposed to. 
+//tried this https://thewebdev.info/2021/04/11/how-to-remove-a-css-property-using-javascript/ didnt work
+function clear(){
+    let cells = document.querySelectorAll("td");
+    for(let i =0; i < cells.length; i++) {
+        //cells[i].style.backgroundColor = '';
+        cells[i].style.removeProperty('background-color');        
+    };
+}
+//fill unfilled
+function fillUncolored(){
+    let cells = document.querySelectorAll('td');
+    for(let i = 0; i< cells.length;i++){
+        if(cells[i].style.backgroundColor == ""){
+            cells[i].style.backgroundColor= selected_color;
+        };
+    };
+}
